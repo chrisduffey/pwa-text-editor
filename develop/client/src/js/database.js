@@ -26,11 +26,13 @@ const tx = db.transaction('jate', 'readwrite');
 const store = tx.objectStore('jate');
 
 //PUT to add data to the db
-const request = store.put({id: 1, value: content});
+const request = store.put({value: content});
 
 //Get confirmation of request
 const result = await request;
 console.log ('-data saved to the database', result);
+
+await tx.done;
 
 };
 
@@ -52,6 +54,8 @@ const request = store.getAll();
 //confirmation of request
 const result = await request;
 console.log('result.value', result);
+
+await tx.done;
 return result;
 };
 
